@@ -3,9 +3,13 @@ import './Main.sass'
 import PlayArea from '../PlayArea/PlayArea'
 import emptyArea from '../../constants/emptyArea'
 import newBlock from '../../gameEvents/blockGen'
-import Move from '../../userEvents/Move'
+import MoveDown from '../../blockMoves/MoveDown'
+import MoveRight from '../../blockMoves/MoveRight'
+import MoveLeft from '../../blockMoves/MoveLeft'
 
-const move = new Move()
+const moveDown = new MoveDown()
+const moveRight = new MoveRight()
+const moveLeft = new MoveLeft()
 
 function Main() {
 
@@ -23,18 +27,18 @@ function Main() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            changeArea(area => move.down(area));
+            changeArea(area => moveDown.move(area));
         }, 1000);
         return () => clearInterval(interval);
     }, []);
   
     function changeOnArea(event) {
         if (event.code === 'Numpad5') {
-            changeArea(move.down(area))
+            changeArea(moveDown.move(area))
         } else if (event.code === 'Numpad4') {
-            changeArea(move.left(area))
+            changeArea(moveLeft.move(area))
         } else if (event.code === 'Numpad6') {
-            changeArea(move.right(area))
+            changeArea(moveRight.move(area))
         }
     }
 
