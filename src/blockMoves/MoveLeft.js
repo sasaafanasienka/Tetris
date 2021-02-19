@@ -9,7 +9,7 @@ export default class MoveLeft extends React.Component {
         const oldArea = dataTransform.schemeToArr(scheme)
         for (let i = 0; i < newArea.length; i++) {
             if (newArea[i] === 1) {
-                if (i.toString().slice(-1) !== '0') {
+                if (i.toString().slice(-1) !== '0' && newArea[i - 1] === 0) {
                     newArea[i] = 0;
                     newArea[i - 1] = 1;
                 } else {

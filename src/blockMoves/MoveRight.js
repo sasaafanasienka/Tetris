@@ -9,7 +9,7 @@ export default class MoveRight extends React.Component {
         const oldArea = dataTransform.schemeToArr(scheme)
         for (let i = newArea.length; i >= 0; i--) {
             if (newArea[i] === 1) {
-                if (i.toString().slice(-1) !== '9') {
+                if (i.toString().slice(-1) !== '9' && newArea[i + 1] === 0) {
                     newArea[i] = 0;
                     newArea[i + 1] = 1;
                 } else {

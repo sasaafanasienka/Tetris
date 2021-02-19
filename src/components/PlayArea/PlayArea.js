@@ -3,9 +3,20 @@ import './PlayArea.sass'
 
 function PlayArea(props) {
 
+    function checkMovingBlocks() {
+        return props.gameData.some((row) => {
+            return row.includes(1)
+        })
+    }
+
+    // if (!checkMovingBlocks()) {
+    //     console.log(1)
+    //     props.addNewBlock()
+    // }
+
     function renderCells() {
         let cells = []
-        for (let i = 0; i < 20; i++) {
+        for (let i = 4; i < 24; i++) {
             for (let a = 0; a < 10; a++) {
                 if (props.gameData[i][a] === 0) {
                     cells.push(
