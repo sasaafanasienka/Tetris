@@ -10,12 +10,13 @@ function random() {
 export default function addRandomBlock(currentArea) {
     const newBlock = blockExamples[random()]
     let newArea = []
-    for (let i = 0; i < 24; i++) {
-        if (i < 4) {
+    for (let i = 0; i < 240; i++) {
+        if (i < 40) {
             newArea.push(newBlock[i])
         } else {
             newArea.push(currentArea[i])
         }
     }
+    console.log(newArea)
     return newArea
 }

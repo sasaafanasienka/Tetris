@@ -2,21 +2,35 @@ import React, { useState, useEffect } from 'react';
 import DataTransform from './DataTransform'
 let dataTransform = new DataTransform()
 
-export default class MoveRight extends React.Component {
+export default class MoveLeft extends React.Component {
 
-    move(scheme) {
-        const newArea = dataTransform.schemeToArr(scheme)
-        const oldArea = dataTransform.schemeToArr(scheme)
-        for (let i = newArea.length; i >= 0; i--) {
-            if (newArea[i] === 1) {
-                if (i.toString().slice(-1) !== '9' && newArea[i + 1] === 0) {
-                    newArea[i] = 0;
-                    newArea[i + 1] = 1;
+    move(currentArea) {
+        const newArea = []
+        let stoppedBlocks = currentArea.map((el) => {
+            return el === 2 ? el = 2 : el = 0
+        })
+        let movingBlocks = currentArea.map((el) => {
+            return el === 1 ? el = 1 : el = 0
+        })
+        for (let i = 239; i >= 0; i--) {
+            if (movingBlocks[i] === 1) {
+                if (i.toString().slice(-1) !== '9') {
+                    movingBlocks[i] = 0;
+                    movingBlocks[i + 1] = 1;
                 } else {
-                    return dataTransform.arrToScheme(oldArea)
+                    return currentArea
                 }
             }
         }
-        return dataTransform.arrToScheme(newArea)
+        for (let i = 0; i < 240; i++) {
+            const sum = stoppedBlocks[i] + movingBlocks[i]
+            if (sum <= 2) {
+                newArea.push(sum)
+            } else {
+                return currentArea
+            }
+        }
+
+        return newArea
     }
 }

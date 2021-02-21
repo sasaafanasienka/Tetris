@@ -16,16 +16,14 @@ function PlayArea(props) {
 
     function renderCells() {
         let cells = []
-        for (let i = 4; i < 24; i++) {
-            for (let a = 0; a < 10; a++) {
-                if (props.gameData[i][a] === 0) {
-                    cells.push(
-                        <div className='PlayArea__cell' key={`${i}${a}`}></div>
-                )} else {
-                    cells.push(
-                        <div className='PlayArea__cell_full' key={`${i}${a}`}></div>
-                )}
-            }
+        for (let i = 40; i < 240; i++) {
+            if (props.gameData[i] === 0) {
+                cells.push(
+                    <div className='PlayArea__cell' key={`${i}`}></div>
+            )} else {
+                cells.push(
+                    <div className='PlayArea__cell_full' key={`${i}`}></div>
+            )}
         }
         return cells
     }

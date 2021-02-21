@@ -11,39 +11,56 @@ import MoveLeft from '../../blockMoves/MoveLeft'
 import Controls from '../Controls/Controls'
 import Stat from '../Stat/Stat'
 import MovingBlock from '../../checks/Movingblock';
+import GameProcess from '../GameProcess/GameProcess'
+import Rotate from '../../blockMoves/Rotate';
 
 const moveDown = new MoveDown()
 const moveRight = new MoveRight()
 const moveLeft = new MoveLeft()
 const movingBlock = new MovingBlock()
+const rotate = new Rotate()
+const gameProcess = new GameProcess()
 
 function Main() {
 
-    const [ area, setArea ] = useState(area => emptyArea)
+    const [ area, setArea ] = useState(area => emptyArea())
     const [ score, setScore ] = useState(0)
-    const [ speed, setSpeed ] = useState(200)
+    const [ speed, setSpeed ] = useState(300)
     const [ moveInterval, setMoveInterval ] = useState()
 
-    function gameProcess() {
-        setArea(area => moveDown.move(area))
+    function nextStep() {
+        setArea(area => gameProcess.nextStep(area))
     }
 
-    function addNewBlock() {
-        setArea(area => addRandomBlock(area))
-    }
-    
     function startGame() {
-        addNewBlock()
+        document.addEventListener('keypress', keyActions)
         setMoveInterval(
-            setInterval(gameProcess, speed)
+            setInterval(nextStep, speed)
         )
+    }
+
+    function stopGame() {
+        document.removeEventListener('keypress', keyActions)
+        clearInterval(moveInterval)
+    }
+
+    function keyActions(event) {
+        if (event.code === 'Numpad5') {
+            setArea(area => moveDown.move(area))
+        } else if (event.code === 'Numpad4') {
+            setArea(area => moveLeft.move(area))
+        } else if (event.code === 'Numpad6') {
+            setArea(area => moveRight.move(area))
+        } else if (event.code === 'Numpad8') {
+            setArea(area => rotate.move(area))
+        }       
     }
 
     return(
         <main className="Main">
             <Stat score={score}/>
-            <PlayArea gameData={area} addNewBlock={addNewBlock}/>
-            <Controls startGame={startGame}/>
+            <PlayArea gameData={area} />
+            <Controls startGame={startGame} stopGame={stopGame}/>
         </main>
         )
 }
