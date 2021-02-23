@@ -50,7 +50,7 @@ function Main() {
         clearInterval(intervalID)
     }
 
-    const keyActions = useCallback((event) => {
+    const keyActions = useCallback((event) => { //хук useCallBack]
         if (event.code === 'Numpad5') {
             setState(state => moveDown.move(state))
         } else if (event.code === 'Numpad4') {
@@ -61,10 +61,6 @@ function Main() {
             setState(state => rotate.move(state))
         }       
     }, [])
-
-    function test() {
-        console.log('test')
-    }
 
     return(
         <main className="Main">

@@ -33,13 +33,11 @@ export default class MoveDown extends React.Component {
             }
         }
 
-        const newBrick = randomBlock()
-
         return {
             playField: newField,
-            movingBrick: newBrick.brick,
+            movingBrick: [0],
             baseLine: 3,
-            baseColumn: newBrick.baseColumn,
+            baseColumn: 3,
             score: current.score,
             speed: current.speed,
             gemeStatus: current.gemeStatus
@@ -49,10 +47,18 @@ export default class MoveDown extends React.Component {
     move(current) {
 
         const playField = current.playField
-        const movingBrick = current.movingBrick
+        let movingBrick = current.movingBrick
         const baseLine = current.baseLine + 1
-        const baseColumn = current.baseColumn
+        let baseColumn = current.baseColumn
         const brickSize = current.movingBrick.length
+
+        console.log(movingBrick)
+
+        if (movingBrick.length === 1) {
+            const newBrick = randomBlock() 
+            movingBrick = newBrick.brick
+            baseColumn = newBrick.baseColumn
+        }
 
         if (baseLine > 23) {
             return this.stopBlock(current) 
