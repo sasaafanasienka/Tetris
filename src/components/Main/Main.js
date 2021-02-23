@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Main.sass'
 import '../../styles/button.sass'
 import PlayArea from '../PlayArea/PlayArea'
@@ -32,25 +32,25 @@ function Main() {
             speed: 800
         }
     )
-    const [intervalID, setMoveInterval ] = useState()
+    const [ intervalID, setMoveInterval ] = useState()
 
     function nextStep() {
         setState(state => gameProcess.nextStep(state))
     }
 
     function startGame() {
-        document.addEventListener('keypress', keyActions)
+        window.addEventListener('keydown', keyActions)
         setMoveInterval(
             setInterval(nextStep, state.speed)
-        )
-    }
-
+            )
+        }
+        
     function stopGame() {
-        document.removeEventListener('keypress', keyActions)
+        window.removeEventListener('keydown', keyActions)
         clearInterval(intervalID)
     }
 
-    function keyActions(event) {
+    const keyActions = useCallback((event) => {
         if (event.code === 'Numpad5') {
             setState(state => moveDown.move(state))
         } else if (event.code === 'Numpad4') {
@@ -60,6 +60,10 @@ function Main() {
         }  else if (event.code === 'Numpad8') {
             setState(state => rotate.move(state))
         }       
+    }, [])
+
+    function test() {
+        console.log('test')
     }
 
     return(

@@ -26,11 +26,11 @@ function rotate(brick) {
 
 export default function randomBlock() {
 
-    let newBrick = blockExamples[random(6)]
-    const newBrickSize = newBrick.length
-    for (let i = 0; i < random(3); i++ ) {
+    let newBrick = blockExamples[random(6)] //сперва генерируем рандомно одну из 7 фигур
+    for (let i = 0; i < random(3); i++ ) { //потом рандомно крутим фигуру от 0 до 3 раз
         newBrick = rotate(newBrick)
     }
+    const newBrickSize = newBrick.length
 
     return {
         brick: newBrick,
