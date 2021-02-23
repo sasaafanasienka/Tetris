@@ -1,22 +1,32 @@
-import blockExamples from '../constants/blockExamples'
-import DataTransform from '../blockMoves/DataTransform'
+import scoreTable from '../constants/scoreTable'
 
-const dataTransform = new DataTransform()
+export default function removeFullRows(current) {
+    const playField = current.playField
+    const movingBrick = current.movingBrick
+    const baseLine = current.baseLine
+    const baseColumn = current.baseColumn
 
-export default function removeFullRows(currentArea) {
-    const emptyRow = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    let newArea = []
-    const areaArray = dataTransform.arrToScheme(currentArea)
+    let fullRowsQuantity = 0
+    let newPlayField = []
+
     for (let i = 0; i < 24; i++) {
-        if (areaArray[i].some((el) => { return el < 2 })) {
-            newArea.push(areaArray[i])
+        if (playField[i].some((el) => { return el !== 2 })) {
+            newPlayField.push(playField[i])
+        } else {
+            fullRowsQuantity = fullRowsQuantity + 1
         }
     }
-    console.log(newArea)
-    console.log(newArea.length)
-    for ( let a = 0; a < 24 - newArea.length; a++ ) {
-        newArea.splice(0, 0, emptyRow)
+    console.log(newPlayField)
+    for (let i = 0; i <= 24 - newPlayField.length; i++) {
+        newPlayField.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     }
-
-    return dataTransform.schemeToArr(newArea)
+    console.log(newPlayField)
+    return {
+        playField: newPlayField,
+        movingBrick: movingBrick,
+        baseLine: baseLine,
+        baseColumn: baseColumn,
+        score: current.score + scoreTable[fullRowsQuantity],
+        speed: current.speed - 2
+    }
 }

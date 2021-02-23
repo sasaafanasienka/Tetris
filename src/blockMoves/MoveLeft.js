@@ -1,36 +1,41 @@
 import React, { useState, useEffect } from 'react';
+import freePlaceToMove from '../checks/freePlaceToMove';
 import DataTransform from './DataTransform'
-let dataTransform = new DataTransform()
 
 export default class MoveLeft extends React.Component {
 
-    move(currentArea) {
-        const newArea = []
-        let stoppedBlocks = currentArea.map((el) => {
-            return el === 2 ? el = 2 : el = 0
-        })
-        let movingBlocks = currentArea.map((el) => {
-            return el === 1 ? el = 1 : el = 0
-        })
-        for (let i = 0; i < 240; i++) {
-            if (movingBlocks[i] === 1) {
-                if (i.toString().slice(-1) !== '0') {
-                    movingBlocks[i] = 0;
-                    movingBlocks[i - 1] = 1;
-                } else {
-                    return currentArea
+    doNotMove(current) {
+        return current
+    }
+
+    move(current) {
+
+        const playField = current.playField
+        const movingBrick = current.movingBrick
+        const baseLine = current.baseLine
+        const baseColumn = current.baseColumn - 1
+        const brickSize = current.movingBrick.length
+
+        if (baseColumn < 0) {
+            for (let i = 0; i < brickSize; i++) {
+                for (let a = 0; a < baseColumn * -1; a++) {
+                    if(movingBrick[i][a] === 1) {
+                        return this.doNotMove(current) 
+                    }
                 }
             }
         }
-        for (let i = 0; i < 240; i++) {
-            const sum = stoppedBlocks[i] + movingBlocks[i]
-            if (sum <= 2) {
-                newArea.push(sum)
-            } else {
-                return currentArea
-            }
+        if (freePlaceToMove( playField, movingBrick, baseLine, baseColumn, brickSize ) === false) {
+            return this.doNotMove(current)
         }
 
-        return newArea
+        return {
+            playField: playField,
+            movingBrick: movingBrick,
+            baseLine: baseLine,
+            baseColumn: baseColumn,
+            score: current.score,
+            speed: current.speed
+        }
     }
 }

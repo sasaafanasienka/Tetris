@@ -1,39 +1,43 @@
 import React, { useState, useEffect } from 'react';
-// import addNewBlock from '../gameEvents/addNewBlock';
-import DataTransform from './DataTransform'
-let dataTransform = new DataTransform()
+import freePlaceToMove from '../checks/freePlaceToMove';
 
 export default class Rotate extends React.Component {
 
-    move(currentArea) {
-        let newArea = []
-        let stoppedBlocks = currentArea.map((el) => {
-            return el === 2 ? el = 2 : el = 0
-        })
-        let movingBlocks = currentArea.map((el) => {
-            return el === 1 ? el = 1 : el = 0
-        })
-        const areaScheme = dataTransform.arrToScheme(movingBlocks)
-        let baseLine = 0
-        for (let i = 0; i < 24; )
+    move(current) {
+        const playField = current.playField
+        const movingBrick = current.movingBrick
+        const baseLine = current.baseLine
+        const baseColumn = current.baseColumn
+        const brickSize = current.movingBrick.length
 
+        let newBaseColumn = baseColumn
+        if (baseColumn < 0) {
+            newBaseColumn = 0
+        } else if (baseColumn > 10 - brickSize) {
+            newBaseColumn = 10  - brickSize
+        }
+
+        let rotatedBrick = []
         
-
-
-        if (movingBlocks.slice(-10).includes(1)) {
-            return this.stopBlock(currentArea)
-        } else {
-            movingBlocks.splice(230)
-            movingBlocks = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0].concat(movingBlocks)
-        }
-        for (let i = 0; i < 240; i++) {
-            const sum = stoppedBlocks[i] + movingBlocks[i]
-            if (sum <= 2) {
-                newArea.push(sum)
-            } else {
-                return this.stopBlock(currentArea)
+        for ( let i = 0; i < brickSize; i++ ) {
+            let newRow = []
+            for ( let a = 0; a < brickSize; a++ ) {
+                newRow.push(movingBrick[brickSize - a - 1][i])
             }
+            rotatedBrick.push(newRow)
         }
-        return newArea
+
+        if (freePlaceToMove( playField, rotatedBrick, baseLine, baseColumn, brickSize ) === false) {
+            return current
+        }
+
+        return {
+            playField: playField,
+            movingBrick: rotatedBrick,
+            baseLine: baseLine,
+            baseColumn: newBaseColumn,
+            score: current.score,
+            speed: current.speed
+        }
     }
 }

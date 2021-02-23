@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from 'react';
 // import addNewBlock from '../gameEvents/addNewBlock';
-import MovingBlock from '../../checks/Movingblock'
-import addRandomBlock from '../../gameEvents/addRandomBlock';
 import MoveDown from '../../blockMoves/MoveDown'
-import FullRows from '../../checks/FullRows'
+import youLose from '../../checks/youLose';
+import fullRows from '../../checks/fullRows'
 import removeFullRows from '../../gameEvents/removeFullRows';
 
-let movingBlock = new MovingBlock()
 let moveDown = new MoveDown()
-let fullRows = new FullRows()
-
 
 export default class GameProcess extends React.Component {
 
-    nextStep(currentArea) {
-        if (fullRows.check(currentArea)) {
-            console.log('try to remove full rows')
-            return removeFullRows(currentArea)
+    nextStep(current) {
+        if (youLose(current.playField)) {
+            console.log('you lose')
         }
-        if (!currentArea.includes(1)) {
-            return addRandomBlock(currentArea)
+        if (fullRows(current.playField)) {
+            return removeFullRows(current)
         } else {
-            return moveDown.move(currentArea)
+            return moveDown.move(current)
         }
     }
 }

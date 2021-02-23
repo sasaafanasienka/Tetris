@@ -1,44 +1,76 @@
 import React, { useState, useEffect } from 'react';
+import freePlaceToMove from '../checks/freePlaceToMove';
 // import addNewBlock from '../gameEvents/addNewBlock';
 import DataTransform from './DataTransform'
+import randomBlock from '../gameEvents/randomBlock'
 let dataTransform = new DataTransform()
 
 export default class MoveDown extends React.Component {
 
-    stopBlock(currentArea) {
-        let newArea = []
-        for (let i = 0; i < 240; i++) {
-            if (currentArea[i] === 1) {
-                newArea.push(2)
+    stopBlock(current) {
+
+        const playField = current.playField
+        const movingBrick = current.movingBrick
+        const baseLine = current.baseLine
+        const baseColumn = current.baseColumn
+        const brickSize = current.movingBrick.length
+
+        let newField = []
+        for ( let i = 0; i < 24; i++) {
+            if (i <= baseLine - brickSize || i > baseLine) { //если в строке нет движущейся фигуры
+                newField.push(playField[i]) //то оставляем поле как есть
             } else {
-                newArea.push(currentArea[i])
+                let newRow = []
+                for ( let a = 0; a < 10; a++ ) { //если движущаяся фигура есть, начинаем првоерять по колонкам
+                    if ( a < baseColumn || a >= baseColumn + brickSize ) { //если фигуры нет в колонках
+                        newRow.push(playField[i][a])  // тоже оставляем как есть
+                    } else {
+                        if (movingBrick[i - baseLine + brickSize - 1][a - baseColumn] === 1) { //тут данные поля заменяются данными движ фигруы
+                            newRow.push(2)
+                        } else {
+                            newRow.push(playField[i][a])
+                        }
+                    }
+                }
+                newField.push(newRow)
             }
         }
-        return newArea
+
+        const newBrick = randomBlock()
+
+        return {
+            playField: newField,
+            movingBrick: newBrick.brick,
+            baseLine: 3,
+            baseColumn: newBrick.baseColumn,
+            score: current.score,
+            speed: current.speed
+        }
     }
 
-    move(currentArea) {
-        let newArea = []
-        let stoppedBlocks = currentArea.map((el) => {
-            return el === 2 ? el = 2 : el = 0
-        })
-        let movingBlocks = currentArea.map((el) => {
-            return el === 1 ? el = 1 : el = 0
-        })
-        if (movingBlocks.slice(-10).includes(1)) {
-            return this.stopBlock(currentArea)
+    move(current) {
+
+        const playField = current.playField
+        const movingBrick = current.movingBrick
+        const baseLine = current.baseLine + 1
+        const baseColumn = current.baseColumn
+        const brickSize = current.movingBrick.length
+
+        if (baseLine > 23) {
+            return this.stopBlock(current) 
         } else {
-            movingBlocks.splice(230)
-            movingBlocks = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0].concat(movingBlocks)
-        }
-        for (let i = 0; i < 240; i++) {
-            const sum = stoppedBlocks[i] + movingBlocks[i]
-            if (sum <= 2) {
-                newArea.push(sum)
-            } else {
-                return this.stopBlock(currentArea)
+            if(freePlaceToMove( playField, movingBrick, baseLine, baseColumn, brickSize ) === false) {
+                return this.stopBlock(current)
             }
         }
-        return newArea
+
+        return {
+            playField: playField,
+            movingBrick: movingBrick,
+            baseLine: baseLine,
+            baseColumn: baseColumn,
+            score: current.score,
+            speed: current.speed
+        }
     }
 }

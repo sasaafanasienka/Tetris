@@ -2,64 +2,70 @@ import React, { useState, useEffect } from 'react';
 import './Main.sass'
 import '../../styles/button.sass'
 import PlayArea from '../PlayArea/PlayArea'
-import emptyArea from '../../constants/emptyArea'
-import testArea from '../../constants/testArea'
-import addRandomBlock from '../../gameEvents/addRandomBlock'
+import emptyField from '../../constants/emptyField'
+import randomBlock from '../../gameEvents/randomBlock'
 import MoveDown from '../../blockMoves/MoveDown'
 import MoveRight from '../../blockMoves/MoveRight'
 import MoveLeft from '../../blockMoves/MoveLeft'
 import Controls from '../Controls/Controls'
 import Stat from '../Stat/Stat'
-import MovingBlock from '../../checks/Movingblock';
 import GameProcess from '../GameProcess/GameProcess'
 import Rotate from '../../blockMoves/Rotate';
 
 const moveDown = new MoveDown()
 const moveRight = new MoveRight()
 const moveLeft = new MoveLeft()
-const movingBlock = new MovingBlock()
 const rotate = new Rotate()
 const gameProcess = new GameProcess()
 
 function Main() {
 
-    const [ area, setArea ] = useState(area => emptyArea())
-    const [ score, setScore ] = useState(0)
-    const [ speed, setSpeed ] = useState(300)
-    const [ moveInterval, setMoveInterval ] = useState()
+    const firstBrick = randomBlock()
+
+    const [state, setState ] = useState(
+        {
+            playField: emptyField(),
+            movingBrick: firstBrick.brick,
+            baseLine: 3,
+            baseColumn: firstBrick.baseColumn,
+            score: 0,
+            speed: 800
+        }
+    )
+    const [intervalID, setMoveInterval ] = useState()
 
     function nextStep() {
-        setArea(area => gameProcess.nextStep(area))
+        setState(state => gameProcess.nextStep(state))
     }
 
     function startGame() {
         document.addEventListener('keypress', keyActions)
         setMoveInterval(
-            setInterval(nextStep, speed)
+            setInterval(nextStep, state.speed)
         )
     }
 
     function stopGame() {
         document.removeEventListener('keypress', keyActions)
-        clearInterval(moveInterval)
+        clearInterval(intervalID)
     }
 
     function keyActions(event) {
         if (event.code === 'Numpad5') {
-            setArea(area => moveDown.move(area))
+            setState(state => moveDown.move(state))
         } else if (event.code === 'Numpad4') {
-            setArea(area => moveLeft.move(area))
+            setState(state => moveLeft.move(state))
         } else if (event.code === 'Numpad6') {
-            setArea(area => moveRight.move(area))
-        } else if (event.code === 'Numpad8') {
-            setArea(area => rotate.move(area))
+            setState(state => moveRight.move(state))
+        }  else if (event.code === 'Numpad8') {
+            setState(state => rotate.move(state))
         }       
     }
 
     return(
         <main className="Main">
-            <Stat score={score}/>
-            <PlayArea gameData={area} />
+            <Stat score={state.score}/>
+            <PlayArea gameData={state} />
             <Controls startGame={startGame} stopGame={stopGame}/>
         </main>
         )
