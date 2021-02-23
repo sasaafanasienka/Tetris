@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import freePlaceToMove from '../checks/freePlaceToMove';
-import DataTransform from './DataTransform'
-let dataTransform = new DataTransform()
 
 export default class MoveLeft extends React.Component {
 
@@ -37,7 +35,8 @@ export default class MoveLeft extends React.Component {
             baseLine: baseLine,
             baseColumn: baseColumn,
             score: current.score,
-            speed: current.speed
+            speed: current.speed,
+            gemeStatus: current.gemeStatus
         }
     }
 }

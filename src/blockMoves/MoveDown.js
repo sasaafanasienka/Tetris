@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import freePlaceToMove from '../checks/freePlaceToMove';
-// import addNewBlock from '../gameEvents/addNewBlock';
-import DataTransform from './DataTransform'
 import randomBlock from '../gameEvents/randomBlock'
-let dataTransform = new DataTransform()
 
 export default class MoveDown extends React.Component {
 
@@ -44,7 +41,8 @@ export default class MoveDown extends React.Component {
             baseLine: 3,
             baseColumn: newBrick.baseColumn,
             score: current.score,
-            speed: current.speed
+            speed: current.speed,
+            gemeStatus: current.gemeStatus
         }
     }
 
@@ -70,7 +68,8 @@ export default class MoveDown extends React.Component {
             baseLine: baseLine,
             baseColumn: baseColumn,
             score: current.score,
-            speed: current.speed
+            speed: current.speed,
+            gemeStatus: current.gemeStatus
         }
     }
 }

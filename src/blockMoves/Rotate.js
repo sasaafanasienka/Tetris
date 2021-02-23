@@ -41,7 +41,8 @@ export default class Rotate extends React.Component {
             baseLine: baseLine,
             baseColumn: newBaseColumn,
             score: current.score,
-            speed: current.speed
+            speed: current.speed,
+            gemeStatus: current.gemeStatus
         }
     }
 }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import addNewBlock from '../gameEvents/addNewBlock';
 import MoveDown from '../../blockMoves/MoveDown'
 import youLose from '../../checks/youLose';
 import fullRows from '../../checks/fullRows'

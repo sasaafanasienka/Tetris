@@ -16,6 +16,7 @@ export default function removeFullRows(current) {
             fullRowsQuantity = fullRowsQuantity + 1
         }
     }
+
     console.log(newPlayField)
     for (let i = 0; i < fullRowsQuantity; i++) {
         newPlayField.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
@@ -27,6 +28,7 @@ export default function removeFullRows(current) {
         baseLine: baseLine,
         baseColumn: baseColumn,
         score: current.score + scoreTable[fullRowsQuantity],
-        speed: current.speed - 2
+        speed: current.speed - 2,
+        gemeStatus: current.gemeStatus
     }
 }
