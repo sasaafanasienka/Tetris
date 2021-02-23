@@ -24,7 +24,11 @@ export default class Rotate extends React.Component {
             for ( let a = 0; a < brickSize; a++ ) {
                 newRow.push(movingBrick[brickSize - a - 1][i])
             }
-            rotatedBrick.push(newRow)
+            if (newRow.every((el) => { return el === 0 })) {
+                rotatedBrick.unshift(newRow)
+            } else {
+                rotatedBrick.push(newRow)
+            }
         }
 
         if (freePlaceToMove( playField, rotatedBrick, baseLine, baseColumn, brickSize ) === false) {

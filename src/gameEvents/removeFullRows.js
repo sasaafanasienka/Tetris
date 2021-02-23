@@ -17,7 +17,7 @@ export default function removeFullRows(current) {
         }
     }
     console.log(newPlayField)
-    for (let i = 0; i <= 24 - newPlayField.length; i++) {
+    for (let i = 0; i < fullRowsQuantity; i++) {
         newPlayField.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     }
     console.log(newPlayField)
