@@ -12,6 +12,5 @@ export default function addNewBrick(current) {
         baseColumn: newBrick.baseColumn,
         score: current.score,
         speed: current.speed,
-        // gemeStatus: current.gemeStatus
     }
 }

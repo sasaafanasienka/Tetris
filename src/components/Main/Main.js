@@ -8,6 +8,7 @@ import MoveRight from '../../blockMoves/MoveRight'
 import MoveLeft from '../../blockMoves/MoveLeft'
 import Controls from '../Controls/Controls'
 import Stat from '../Stat/Stat'
+import Queue from '../Queue/Queue'
 import GameProcess from '../GameProcess/GameProcess'
 import Rotate from '../../blockMoves/Rotate';
 
@@ -63,7 +64,10 @@ function Main() {
         <main className="Main">
             <Stat score={state.score}/>
             <PlayArea gameData={state} />
-            <Controls startGame={startGame} stopGame={stopGame}/>
+            <div>
+                <Controls startGame={startGame} stopGame={stopGame}/>
+                <Queue gameData={state}/>
+            </div>
         </main>
         )
 }

@@ -1,3 +1,3 @@
-const scoreTable = [0, 100, 300, 700, 1500]
+const scoreTable = [0, 5, 10, 20, 40]
 
 export default scoreTable
