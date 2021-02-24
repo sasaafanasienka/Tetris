@@ -3,7 +3,6 @@ import './Main.sass'
 import '../../styles/button.sass'
 import PlayArea from '../PlayArea/PlayArea'
 import emptyField from '../../constants/emptyField'
-import randomBlock from '../../gameEvents/randomBlock'
 import MoveDown from '../../blockMoves/MoveDown'
 import MoveRight from '../../blockMoves/MoveRight'
 import MoveLeft from '../../blockMoves/MoveLeft'
@@ -20,14 +19,12 @@ const gameProcess = new GameProcess()
 
 function Main() {
 
-    const firstBrick = randomBlock()
-
     const [state, setState ] = useState(
         {
             playField: emptyField(),
-            movingBrick: firstBrick.brick,
+            movingBrick: [],
             baseLine: 3,
-            baseColumn: firstBrick.baseColumn,
+            baseColumn: 3,
             score: 0,
             speed: 800
         }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import freePlaceToMove from '../checks/freePlaceToMove';
-import randomBlock from '../gameEvents/randomBlock'
+import randomBlock from '../utilits/randomBlock'
 
 export default class MoveDown extends React.Component {
 
@@ -35,7 +35,7 @@ export default class MoveDown extends React.Component {
 
         return {
             playField: newField,
-            movingBrick: [0],
+            movingBrick: [],
             baseLine: 3,
             baseColumn: 3,
             score: current.score,
@@ -52,14 +52,9 @@ export default class MoveDown extends React.Component {
         let baseColumn = current.baseColumn
         const brickSize = current.movingBrick.length
 
-        console.log(movingBrick)
-
-        if (movingBrick.length === 1) {
-            const newBrick = randomBlock() 
-            movingBrick = newBrick.brick
-            baseColumn = newBrick.baseColumn
+        if ( movingBrick.length === 0 ) {
+            return current
         }
-
         if (baseLine > 23) {
             return this.stopBlock(current) 
         } else {
