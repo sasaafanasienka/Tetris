@@ -36,6 +36,7 @@ export default class MoveLeft extends React.Component {
             nextBrick: current.nextBrick,
             nextBaseColumn: current.nextBaseColumn,
             score: current.score,
+            record: current.record,
             speed: current.speed,
         }
     }

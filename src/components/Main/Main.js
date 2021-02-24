@@ -29,6 +29,7 @@ function Main() {
             nextBrick: [],
             nextBaseColumn: 3,
             score: 0,
+            record: localStorage.getItem('record'),
             speed: 800
         }
     )
@@ -64,7 +65,7 @@ function Main() {
 
     return(
         <main className="Main">
-            <Stat score={state.score}/>
+            <Stat score={state.score} record={state.record}/>
             <PlayArea gameData={state} />
             <div>
                 <Controls startGame={startGame} stopGame={stopGame}/>

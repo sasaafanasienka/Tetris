@@ -33,6 +33,13 @@ export default class MoveDown extends React.Component {
             }
         }
 
+        const newScore = current.score + 1
+        let newRecord = current.record
+        if (newScore > current.record) {
+            newRecord = newScore
+            localStorage.setItem('record', newRecord)
+        }
+
         return {
             playField: newField,
             movingBrick: [],
@@ -40,7 +47,8 @@ export default class MoveDown extends React.Component {
             baseColumn: 3,
             nextBrick: current.nextBrick,
             nextBaseColumn: current.nextBaseColumn,
-            score: current.score + 1,
+            score: newScore,
+            record: newRecord,
             speed: current.speed,
         }
     }
@@ -72,6 +80,7 @@ export default class MoveDown extends React.Component {
             nextBrick: current.nextBrick,
             nextBaseColumn: current.nextBaseColumn,
             score: current.score,
+            record: current.record,
             speed: current.speed,
         }
     }

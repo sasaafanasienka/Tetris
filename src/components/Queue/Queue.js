@@ -4,13 +4,11 @@ import './Queue.sass'
 function Queue(props) {
 
     const nextBrick = props.gameData.nextBrick
-
+   
     function compileDataToArr() { 
         let dataArray = []
         for ( let i = 0; i < 4; i++) {
             for (let a = 0; a < 4; a++) {
-                console.log(i)
-                console.log(a)
                 if (!nextBrick[i] || !nextBrick[i][a]) {
                     dataArray.push(0)
                 } else {

@@ -14,6 +14,7 @@ export default function addNewBrick(current) {
             nextBrick: nextBrick.brick,
             nextBaseColumn: nextBrick.baseColumn,
             score: current.score,
+            record: current.record,
             speed: current.speed,
         }
     } else {
@@ -26,6 +27,7 @@ export default function addNewBrick(current) {
             nextBrick: nextBrick.brick,
             nextBaseColumn: nextBrick.baseColumn,
             score: current.score,
+            record: current.record,
             speed: current.speed,
         }
     }
