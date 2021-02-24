@@ -27,8 +27,9 @@ export default function removeFullRows(current) {
         movingBrick: movingBrick,
         baseLine: baseLine,
         baseColumn: baseColumn,
+        nextBrick: current.nextBrick,
+        nextBaseColumn: current.nextBaseColumn,
         score: current.score + scoreTable[fullRowsQuantity],
-        speed: current.speed - 2,
-        gemeStatus: current.gemeStatus
+        speed: current.speed,
     }
 }

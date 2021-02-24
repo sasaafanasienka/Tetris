@@ -3,14 +3,30 @@ import randomBlock from '../utilits/randomBlock'
 
 export default function addNewBrick(current) {
 
-    const newBrick = randomBlock()
-
-    return {
-        playField: current.playField,
-        movingBrick: newBrick.brick,
-        baseLine: current.baseLine,
-        baseColumn: newBrick.baseColumn,
-        score: current.score,
-        speed: current.speed,
+    if (current.nextBrick.length === 0){
+        let movingBrick = randomBlock()
+        let nextBrick = randomBlock()
+        return {
+            playField: current.playField,
+            movingBrick: movingBrick.brick,
+            baseLine: 3,
+            baseColumn: movingBrick.baseColumn,
+            nextBrick: nextBrick.brick,
+            nextBaseColumn: nextBrick.baseColumn,
+            score: current.score,
+            speed: current.speed,
+        }
+    } else {
+        let nextBrick = randomBlock()
+        return {
+            playField: current.playField,
+            movingBrick: current.nextBrick,
+            baseLine: 3,
+            baseColumn: current.nextBaseColumn,
+            nextBrick: nextBrick.brick,
+            nextBaseColumn: nextBrick.baseColumn,
+            score: current.score,
+            speed: current.speed,
+        }
     }
 }

@@ -40,9 +40,10 @@ export default class Rotate extends React.Component {
             movingBrick: rotatedBrick,
             baseLine: baseLine,
             baseColumn: newBaseColumn,
+            nextBrick: current.nextBrick,
+            nextBaseColumn: current.nextBaseColumn,
             score: current.score,
             speed: current.speed,
-            gemeStatus: current.gemeStatus
         }
     }
 }

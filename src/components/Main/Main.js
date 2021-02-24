@@ -26,6 +26,8 @@ function Main() {
             movingBrick: [],
             baseLine: 3,
             baseColumn: 3,
+            nextBrick: [],
+            nextBaseColumn: 3,
             score: 0,
             speed: 800
         }

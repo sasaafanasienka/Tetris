@@ -3,11 +3,7 @@ import './Queue.sass'
 
 function Queue(props) {
 
-    const playField = props.gameData.playField
-    const movingBrick = props.gameData.movingBrick
-    const baseLine = props.gameData.baseLine
-    const baseColumn = props.gameData.baseColumn
-    const brickSideLength = props.gameData.movingBrick.length
+    const nextBrick = props.gameData.nextBrick
 
     function compileDataToArr() { 
         let dataArray = []
@@ -15,15 +11,14 @@ function Queue(props) {
             for (let a = 0; a < 4; a++) {
                 console.log(i)
                 console.log(a)
-                if (!movingBrick[i] || !movingBrick[i][a]) {
+                if (!nextBrick[i] || !nextBrick[i][a]) {
                     dataArray.push(0)
                 } else {
-                    dataArray.push(movingBrick[i][a])
+                    dataArray.push(nextBrick[i][a])
                 }
             }
         }
         return dataArray
-        // return [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0]
     }
 
     function renderCells() {
@@ -43,13 +38,10 @@ function Queue(props) {
 
     return(
         <div className='Queue'>
-            <p className='Queue__title'>CURRENT:</p>
+            <p className='Queue__title'>NEXT:</p>
             <div className='Queue__item'>
                 {renderCells()}
             </div>
-            {/* <div className='Queue__item'>
-
-            </div> */}
         </div>
         )
 }

@@ -38,9 +38,10 @@ export default class MoveDown extends React.Component {
             movingBrick: [],
             baseLine: 3,
             baseColumn: 3,
-            score: current.score,
+            nextBrick: current.nextBrick,
+            nextBaseColumn: current.nextBaseColumn,
+            score: current.score + 1,
             speed: current.speed,
-            gemeStatus: current.gemeStatus
         }
     }
 
@@ -68,9 +69,10 @@ export default class MoveDown extends React.Component {
             movingBrick: movingBrick,
             baseLine: baseLine,
             baseColumn: baseColumn,
+            nextBrick: current.nextBrick,
+            nextBaseColumn: current.nextBaseColumn,
             score: current.score,
             speed: current.speed,
-            gemeStatus: current.gemeStatus
         }
     }
 }
