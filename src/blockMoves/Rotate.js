@@ -35,8 +35,6 @@ export default class Rotate extends React.Component {
             return current
         }
 
-        console.log(current.record)
-
         return {
             playField: playField,
             movingBrick: rotatedBrick,
@@ -46,7 +44,6 @@ export default class Rotate extends React.Component {
             nextBaseColumn: current.nextBaseColumn,
             score: current.score,
             record: current.record,
-            speed: current.speed,
-        }
+            bricksCount: current.bricksCount,        }
     }
 }

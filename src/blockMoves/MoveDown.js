@@ -49,7 +49,7 @@ export default class MoveDown extends React.Component {
             nextBaseColumn: current.nextBaseColumn,
             score: newScore,
             record: newRecord,
-            speed: current.speed,
+            bricksCount: current.bricksCount + 1,
         }
     }
 
@@ -81,7 +81,7 @@ export default class MoveDown extends React.Component {
             nextBaseColumn: current.nextBaseColumn,
             score: current.score,
             record: current.record,
-            speed: current.speed,
+            bricksCount: current.bricksCount,
         }
     }
 }

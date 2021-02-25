@@ -15,7 +15,7 @@ export default function addNewBrick(current) {
             nextBaseColumn: nextBrick.baseColumn,
             score: current.score,
             record: current.record,
-            speed: current.speed,
+            bricksCount: current.bricksCount,
         }
     } else {
         let nextBrick = randomBlock()
@@ -28,7 +28,7 @@ export default function addNewBrick(current) {
             nextBaseColumn: nextBrick.baseColumn,
             score: current.score,
             record: current.record,
-            speed: current.speed,
+            bricksCount: current.bricksCount,
         }
     }
 }

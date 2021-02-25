@@ -17,11 +17,9 @@ export default function removeFullRows(current) {
         }
     }
 
-    console.log(newPlayField)
     for (let i = 0; i < fullRowsQuantity; i++) {
         newPlayField.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     }
-    console.log(newPlayField)
 
     const newScore = current.score + scoreTable[fullRowsQuantity]
     let newRecord = current.record
@@ -39,6 +37,6 @@ export default function removeFullRows(current) {
         nextBaseColumn: current.nextBaseColumn,
         score: newScore,
         record: newRecord,
-        speed: current.speed,
+        bricksCount: current.bricksCount,
     }
 }

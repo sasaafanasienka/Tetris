@@ -9,9 +9,12 @@ let moveDown = new MoveDown()
 
 export default class GameProcess extends React.Component {
 
-    nextStep(current) {
+    nextStep(current, stopGame) {
         if (youLose(current.playField)) {
-            console.log('you lose')
+            console.log('youlose')
+            stopGame()
+            return current
+            // window.removeEventListener('keydown', keyActions)
         }
         if (fullRows(current.playField)) {
             return removeFullRows(current)

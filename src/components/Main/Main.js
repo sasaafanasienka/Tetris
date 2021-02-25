@@ -30,19 +30,20 @@ function Main() {
             nextBaseColumn: 3,
             score: 0,
             record: localStorage.getItem('record'),
-            speed: 800
+            bricksCount: 0
         }
     )
+
     const [ intervalID, setMoveInterval ] = useState()
 
     function nextStep() {
-        setState(state => gameProcess.nextStep(state))
+        setState(state => gameProcess.nextStep(state, stopGame))
     }
 
     function startGame() {
         window.addEventListener('keydown', keyActions)
         setMoveInterval(
-            setInterval(nextStep, state.speed)
+            setInterval(nextStep, 500)
             )
         }
         
