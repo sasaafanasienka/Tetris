@@ -7,21 +7,18 @@ import removeFullRows from '../../gameEvents/removeFullRows';
 
 let moveDown = new MoveDown()
 
-export default class GameProcess extends React.Component {
-
-    nextStep(current, stopGame) {
-        if (youLose(current.playField)) {
-            console.log('youlose')
-            stopGame()
-            return current
-            // window.removeEventListener('keydown', keyActions)
-        }
-        if (fullRows(current.playField)) {
-            return removeFullRows(current)
-        } else if (current.movingBrick.length === 0) {
-            return addNewBrick(current)
-        } else {
-            return moveDown.move(current)
-        }
+export default function gameProcess(current, stopGame, changeSpeed, intervalID) {
+    if (youLose(current.playField)) {
+        console.log('youlose')
+        stopGame()
+        return current
+        // window.removeEventListener('keydown', keyActions)
+    }
+    if (fullRows(current.playField)) {
+        return removeFullRows(current)
+    } else if (current.movingBrick.length === 0) {
+        return addNewBrick(current)
+    } else {
+        return moveDown.move(current)
     }
 }

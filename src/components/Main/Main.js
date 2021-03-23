@@ -9,14 +9,13 @@ import MoveLeft from '../../blockMoves/MoveLeft'
 import Controls from '../Controls/Controls'
 import Stat from '../Stat/Stat'
 import Queue from '../Queue/Queue'
-import GameProcess from '../GameProcess/GameProcess'
+import gameProcess from '../gameProcess/gameProcess'
 import Rotate from '../../blockMoves/Rotate';
 
 const moveDown = new MoveDown()
 const moveRight = new MoveRight()
 const moveLeft = new MoveLeft()
 const rotate = new Rotate()
-const gameProcess = new GameProcess()
 
 function Main() {
 
@@ -35,21 +34,35 @@ function Main() {
     )
 
     const [ intervalID, setMoveInterval ] = useState()
+    const [ gameStatus, setGameStatus ] = useState('stopped')
+    const [ speed, setSpeed ] = useState(0)
 
     function nextStep() {
-        setState(state => gameProcess.nextStep(state, stopGame))
+        setState(state => gameProcess(state, stopGame, changeSpeed, intervalID))
     }
 
     function startGame() {
         window.addEventListener('keydown', keyActions)
         setMoveInterval(
-            setInterval(nextStep, 500)
+            setInterval(nextStep, 1000)
             )
         }
         
     function stopGame() {
         window.removeEventListener('keydown', keyActions)
         clearInterval(intervalID)
+    }
+
+    function changeSpeed(idInterval) {
+        if (speed >= 9) {
+            return
+        } else {
+            setSpeed(speed => speed + 1)
+            clearInterval(idInterval)
+            setMoveInterval(
+                setInterval(nextStep, (10 - speed) * 100)
+            )
+        }
     }
 
     const keyActions = useCallback((event) => { //хук useCallBack]
@@ -66,10 +79,10 @@ function Main() {
 
     return(
         <main className="Main">
-            <Stat score={state.score} record={state.record}/>
-            <PlayArea gameData={state} />
+            <Stat score={state.score} record={state.record} speed={speed}/>
+            <PlayArea gameData={state} changeSpeed={changeSpeed}/>
             <div>
-                <Controls startGame={startGame} stopGame={stopGame}/>
+                <Controls startGame={startGame} stopGame={stopGame} status={gameStatus} changeSpeed={changeSpeed}/>
                 <Queue gameData={state}/>
             </div>
         </main>
