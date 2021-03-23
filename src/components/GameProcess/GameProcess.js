@@ -7,7 +7,7 @@ import removeFullRows from '../../gameEvents/removeFullRows';
 
 let moveDown = new MoveDown()
 
-export default function gameProcess(current, stopGame, changeSpeed, intervalID) {
+export default function gameProcess(current, stopGame, intervalID) {
     if (youLose(current.playField)) {
         console.log('youlose')
         stopGame()

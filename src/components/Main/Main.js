@@ -35,10 +35,9 @@ function Main() {
 
     const [ intervalID, setMoveInterval ] = useState()
     const [ gameStatus, setGameStatus ] = useState('stopped')
-    const [ speed, setSpeed ] = useState(0)
 
     function nextStep() {
-        setState(state => gameProcess(state, stopGame, changeSpeed, intervalID))
+        setState(state => gameProcess(state, stopGame, intervalID))
     }
 
     function startGame() {
@@ -51,18 +50,6 @@ function Main() {
     function stopGame() {
         window.removeEventListener('keydown', keyActions)
         clearInterval(intervalID)
-    }
-
-    function changeSpeed(idInterval) {
-        if (speed >= 9) {
-            return
-        } else {
-            setSpeed(speed => speed + 1)
-            clearInterval(idInterval)
-            setMoveInterval(
-                setInterval(nextStep, (10 - speed) * 100)
-            )
-        }
     }
 
     const keyActions = useCallback((event) => { //хук useCallBack]
@@ -79,10 +66,10 @@ function Main() {
 
     return(
         <main className="Main">
-            <Stat score={state.score} record={state.record} speed={speed}/>
-            <PlayArea gameData={state} changeSpeed={changeSpeed}/>
+            <Stat score={state.score} record={state.record}/>
+            <PlayArea gameData={state}/>
             <div>
-                <Controls startGame={startGame} stopGame={stopGame} status={gameStatus} changeSpeed={changeSpeed}/>
+                <Controls startGame={startGame} stopGame={stopGame} status={gameStatus}/>
                 <Queue gameData={state}/>
             </div>
         </main>
