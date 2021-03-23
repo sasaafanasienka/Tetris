@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './PlayArea.sass'
+import colors from '../../constants/colors'
 
 function PlayArea(props) {
 
@@ -36,7 +37,7 @@ function PlayArea(props) {
                     <div className='PlayArea__cell' key={`${i}`}></div>
             )} else {
                 cells.push(
-                    <div className='PlayArea__cell_full' key={`${i}`}></div>
+                    <div className={`PlayArea__cell_${colors[data[i]]}`} key={`${i}`}></div>
             )}
         }
         return cells

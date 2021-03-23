@@ -18,7 +18,7 @@ export default class MoveLeft extends React.Component {
         if (baseColumn + brickSize > 10) { 
             for (let i = 0; i < brickSize; i++) {
                 for (let a = brickSize - 1; a > 9 - baseColumn; a--) {
-                    if(movingBrick[i][a] === 1) {
+                    if ([1,2,3,4,5,6,7].includes(movingBrick[i][a])) {
                         return this.doNotMove(current) 
                     }
                 }

@@ -22,8 +22,8 @@ export default class MoveDown extends React.Component {
                     if ( a < baseColumn || a >= baseColumn + brickSize ) { //если фигуры нет в колонках
                         newRow.push(playField[i][a])  // тоже оставляем как есть
                     } else {
-                        if (movingBrick[i - baseLine + brickSize - 1][a - baseColumn] === 1) { //тут данные поля заменяются данными движ фигруы
-                            newRow.push(2)
+                        if ([1,2,3,4,5,6,7].includes(movingBrick[i - baseLine + brickSize - 1][a - baseColumn])) { //тут данные поля заменяются данными движ фигруы
+                            newRow.push(movingBrick[i - baseLine + brickSize - 1][a - baseColumn] + 10)
                         } else {
                             newRow.push(playField[i][a])
                         }

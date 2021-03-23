@@ -1,6 +1,7 @@
 import scoreTable from '../constants/scoreTable'
 
 export default function removeFullRows(current) {
+
     const playField = current.playField
     const movingBrick = current.movingBrick
     const baseLine = current.baseLine
@@ -10,10 +11,10 @@ export default function removeFullRows(current) {
     let newPlayField = []
 
     for (let i = 0; i < 24; i++) {
-        if (playField[i].some((el) => { return el !== 2 })) {
-            newPlayField.push(playField[i])
-        } else {
+        if (playField[i].every((el) => { return el > 10 })) {
             fullRowsQuantity = fullRowsQuantity + 1
+        } else {
+            newPlayField.push(playField[i])
         }
     }
 

@@ -12,7 +12,6 @@ export default function gameProcess(current, stopGame, intervalID) {
         console.log('youlose')
         stopGame()
         return current
-        // window.removeEventListener('keydown', keyActions)
     }
     if (fullRows(current.playField)) {
         return removeFullRows(current)

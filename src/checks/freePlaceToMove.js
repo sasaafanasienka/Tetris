@@ -2,7 +2,8 @@ export default function freePlaceToMove( playField, movingBrick, baseLine, baseC
 
     for (let i = 0; i < brickSize; i++ ) {
         for ( let a = 0; a < brickSize; a++ ) {
-            if (movingBrick[i][a] === 1 && playField[i + baseLine - brickSize + 1][a + baseColumn] === 2) {  //было - длина стороны
+            if ([1,2,3,4,5,6,7].includes(movingBrick[i][a]) && [11,12,13,14,15,16,17].includes(playField[i + baseLine - brickSize + 1][a + baseColumn])) {  
+                //было - длина стороны
                 return false
             }
         }

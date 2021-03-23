@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import colors from '../../constants/colors'
 import './Queue.sass'
 
 function Queue(props) {
@@ -28,7 +29,7 @@ function Queue(props) {
                     <div className='Queue__cell' key={`${i}`}></div>
             )} else {
                 cells.push(
-                    <div className='Queue__cell_full' key={`${i}`}></div>
+                    <div className={`Queue__cell_${colors[data[i]]}`} key={`${i}`}></div>
             )}
         }
         return cells
