@@ -9,8 +9,6 @@ function Stat(props) {
             <p className='Stat__score'>{props.score}</p>
             <p className='Stat__title'>BEST:</p>
             <p className='Stat__score'>{props.record}</p>
-            <p className='Stat__title'>SPEED:</p>
-            <p className='Stat__score'>{props.speed}</p>
         </div>
         )
 }

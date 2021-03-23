@@ -1,5 +1,20 @@
 .Main 
-    width: 840px
+    width: 300px
+    height: 600px
     display: grid
-    grid-template-columns: 200px 400px 200px
-    gap: 20px
+    grid-template-columns: 4fr 1fr
+    grid-template-rows: 130px 140px 330px
+    gap: 0px 20px
+    grid-template-areas: "PlayArea Score" "PlayArea Controls" "PlayArea Queue"
+
+.Score
+    grid-area: Score
+    
+.Controls
+    grid-area: Controls
+    
+.Queue
+    grid-area: Queue
+    
+.PlayArea
+    grid-area: PlayArea
