@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MoveDown from '../../blockMoves/MoveDown'
 import youLose from '../../checks/youLose';
-import fullRows from '../../checks/fullRows'
+import fullRows from '../../checks/FullRows'
 import addNewBrick from '../../gameEvents/addNewBrick'
 import removeFullRows from '../../gameEvents/removeFullRows';
 

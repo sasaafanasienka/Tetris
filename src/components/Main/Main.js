@@ -9,7 +9,7 @@ import MoveLeft from '../../blockMoves/MoveLeft'
 import Controls from '../Controls/Controls'
 import Stat from '../Stat/Stat'
 import Queue from '../Queue/Queue'
-import gameProcess from '../gameProcess/gameProcess'
+import gameProcess from '../GameProcess/GameProcess'
 import Rotate from '../../blockMoves/Rotate';
 
 const moveDown = new MoveDown()
