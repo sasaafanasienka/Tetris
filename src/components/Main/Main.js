@@ -53,15 +53,20 @@ function Main() {
     }
 
     const keyActions = useCallback((event) => { //хук useCallBack]
-        if (event.code === 'Numpad5') {
+        console.log(event)
+        if (event.code === 'Numpad5' || event.code === 'ArrowDown' || event.code === 'KeyS') {
+            event.preventDefault()
             setState(state => moveDown.move(state))
-        } else if (event.code === 'Numpad4') {
+        } else if (event.code === 'Numpad4' || event.code === 'ArrowLeft' || event.code === 'KeyA') {
+            event.preventDefault()
             setState(state => moveLeft.move(state))
-        } else if (event.code === 'Numpad6') {
+        } else if (event.code === 'Numpad6' || event.code === 'ArrowRight' || event.code === 'KeyD') {
+            event.preventDefault()
             setState(state => moveRight.move(state))
-        }  else if (event.code === 'Numpad8') {
+        }  else if (event.code === 'Numpad8' || event.code === 'ArrowUp' || event.code === 'KeyW') {
+            event.preventDefault()
             setState(state => rotate.move(state))
-        }       
+        }        
     }, [])
 
     return(
