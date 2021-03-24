@@ -72,9 +72,11 @@ function Main() {
     return(
         <main className="Main">
             <PlayArea gameData={state}/>
-            <Stat score={state.score} record={state.record}/>       
-            <Controls startGame={startGame} stopGame={stopGame} status={gameStatus}/>
-            <Queue gameData={state}/>
+            <div className="Main__controls-panel">
+                <Stat score={state.score} record={state.record}/>       
+                <Controls startGame={startGame} stopGame={stopGame} status={gameStatus}/>
+                <Queue gameData={state}/>
+            </div>
         </main>
         )
 }

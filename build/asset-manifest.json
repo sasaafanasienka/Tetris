@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Tetris/static/css/main.0e33e08d.chunk.css",
-    "main.js": "/Tetris/static/js/main.055da009.chunk.js",
-    "main.js.map": "/Tetris/static/js/main.055da009.chunk.js.map",
+    "main.js": "/Tetris/static/js/main.512d9623.chunk.js",
+    "main.js.map": "/Tetris/static/js/main.512d9623.chunk.js.map",
     "runtime-main.js": "/Tetris/static/js/runtime-main.bf49e36d.js",
     "runtime-main.js.map": "/Tetris/static/js/runtime-main.bf49e36d.js.map",
     "static/js/2.e12429dd.chunk.js": "/Tetris/static/js/2.e12429dd.chunk.js",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.bf49e36d.js",
     "static/js/2.e12429dd.chunk.js",
     "static/css/main.0e33e08d.chunk.css",
-    "static/js/main.055da009.chunk.js"
+    "static/js/main.512d9623.chunk.js"
   ]
 }
