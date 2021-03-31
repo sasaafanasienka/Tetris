@@ -6,10 +6,11 @@ import { useSelector } from 'react-redux';
 function PlayArea(props) {
 
     const playArea = useSelector(state => {return state.playArea})
-    const movingBrick = props.gameData.movingBrick
-    const baseLine = props.gameData.baseLine
-    const baseColumn = props.gameData.baseColumn
-    const brickSideLength = props.gameData.movingBrick.length
+    const currentBrick = useSelector(state => {return state.brick})
+    const brick = currentBrick.brick
+    const baseLine = currentBrick.baseLine
+    const baseColumn = currentBrick.baseColumn
+    const brickSideLength = brick.length
 
     function compileDataToArr() { //сложнючая функция, которая устанавливает фигуру на поле и преобразует все это в единый массив
         let dataArray = []
@@ -21,7 +22,7 @@ function PlayArea(props) {
                     if ( a < baseColumn || a >= baseColumn + brickSideLength ) { //если фигуры нет в колонках
                         dataArray = dataArray.concat(playArea[i][a])  // тоже оставляем как есть
                     } else {
-                        dataArray = dataArray.concat(movingBrick[i - baseLine + brickSideLength - 1][a - baseColumn] + playArea[i][a]) //тут данные поля заменяются данными движ фигруы
+                        dataArray = dataArray.concat(brick[i - baseLine + brickSideLength - 1][a - baseColumn] + playArea[i][a]) //тут данные поля заменяются данными движ фигруы
                     }
                 }
             }
