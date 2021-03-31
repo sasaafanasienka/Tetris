@@ -1,0 +1,1 @@
+export const ADD_NEW_BRICK = 'ADD_NEW_BRICK'

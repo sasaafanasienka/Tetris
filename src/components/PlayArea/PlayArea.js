@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './PlayArea.sass'
 import colors from '../../constants/colors'
+import { useSelector } from 'react-redux';
 
 function PlayArea(props) {
 
-    const playField = props.gameData.playField
+    const playArea = useSelector(state => {return state.playArea})
     const movingBrick = props.gameData.movingBrick
     const baseLine = props.gameData.baseLine
     const baseColumn = props.gameData.baseColumn
@@ -14,13 +15,13 @@ function PlayArea(props) {
         let dataArray = []
         for ( let i = 0; i < 24; i++) {
             if (i <= baseLine - brickSideLength || i > baseLine) { //если в строке нет движущейся фигуры
-                dataArray = dataArray.concat(playField[i]) //то оставляем поле как есть
+                dataArray = dataArray.concat(playArea[i]) //то оставляем поле как есть
             } else {
                 for ( let a = 0; a < 10; a++ ) { //если движущаяся фигура есть, начинаем првоерять по колонкам
                     if ( a < baseColumn || a >= baseColumn + brickSideLength ) { //если фигуры нет в колонках
-                        dataArray = dataArray.concat(playField[i][a])  // тоже оставляем как есть
+                        dataArray = dataArray.concat(playArea[i][a])  // тоже оставляем как есть
                     } else {
-                        dataArray = dataArray.concat(movingBrick[i - baseLine + brickSideLength - 1][a - baseColumn] + playField[i][a]) //тут данные поля заменяются данными движ фигруы
+                        dataArray = dataArray.concat(movingBrick[i - baseLine + brickSideLength - 1][a - baseColumn] + playArea[i][a]) //тут данные поля заменяются данными движ фигруы
                     }
                 }
             }
