@@ -37,7 +37,6 @@ function Main() {
     }
 
     const keyActions = useCallback((event) => { //хук useCallBack
-        // console.log(event)
         if (event.code === 'Numpad5' || event.code === 'ArrowDown' || event.code === 'KeyS') {
             event.preventDefault()
             gameProcess()
@@ -59,7 +58,7 @@ function Main() {
             <div className="Main__controls-panel">
                 {/* <Stat score={state.score} record={state.record}/>        */}
                 <Controls startGame={startGame} stopGame={stopGame} status={gameStatus}/>
-                {/* <Queue gameData={state}/> */}
+                <Queue />
             </div>
         </main>
         )

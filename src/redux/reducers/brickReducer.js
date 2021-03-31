@@ -1,4 +1,10 @@
-import { ADD_NEW_BRICK, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, REMOVE_BRICK, ROTATE } from "../types"
+import { ADD_NEW_BRICK, 
+    ADD_NEW_BRICK_FROM_NEXT, 
+    MOVE_DOWN, 
+    MOVE_LEFT, 
+    MOVE_RIGHT, 
+    REMOVE_BRICK, 
+    ROTATE } from "../types"
 
 const initialBrick = {
     brick: [],
@@ -9,6 +15,8 @@ const initialBrick = {
 export const brickReducer = (state = initialBrick, action) => {
     switch(action.type) {
         case ADD_NEW_BRICK:
+            return action.payload
+        case ADD_NEW_BRICK_FROM_NEXT:
             return action.payload
         case REMOVE_BRICK:
             return initialBrick

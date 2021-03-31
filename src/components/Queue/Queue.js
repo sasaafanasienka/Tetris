@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import colors from '../../constants/colors'
 import './Queue.sass'
 
-function Queue(props) {
+function Queue() {
 
-    const nextBrick = props.gameData.nextBrick
+    const nextBrick = useSelector(state => {return state.nextBrick.brick})
    
     function compileDataToArr() { 
         let dataArray = []
