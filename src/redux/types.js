@@ -6,3 +6,4 @@ export const MOVE_RIGHT = 'MOVE_RIGHT'
 export const ROTATE = 'ROTATE'
 
 export const MOUNT_BRICK = 'MOUNT_BRICK'
+export const REMOVE_FULL_ROWS = 'REMOVE_FULL_ROWS'
