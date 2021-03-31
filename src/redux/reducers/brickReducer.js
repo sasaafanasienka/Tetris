@@ -1,4 +1,4 @@
-// import { AXIOS_TEXT, CHANGE_TEXT } from "./types"
+import { ADD_NEW_BRICK, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, REMOVE_BRICK } from "../types"
 
 const initialBrick = {
     brick: [],
@@ -8,6 +8,16 @@ const initialBrick = {
 
 export const brickReducer = (state = initialBrick, action) => {
     switch(action.type) {
+        case ADD_NEW_BRICK:
+            return action.payload
+        case REMOVE_BRICK:
+            return initialBrick
+        case MOVE_DOWN:
+            return action.payload
+        case MOVE_LEFT:
+            return action.payload
+        case MOVE_RIGHT:
+            return action.payload
         default:
             return state
     }

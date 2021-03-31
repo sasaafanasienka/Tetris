@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import MoveDown from '../../blockMoves/MoveDown'
 import youLose from '../../checks/youLose';
 import fullRows from '../../checks/FullRows'
-import addNewBrick from '../../gameEvents/addNewBrick'
+// import addNewBrick from '../../gameEvents/addNewBrick'
 import removeFullRows from '../../gameEvents/removeFullRows';
+import { useStore } from 'react-redux';
+import { store } from '../../index'
+import { addNewBrick } from '../../redux/actions/addNewBrick'
+import { removeBrick } from '../../redux/actions/removeBrick'
+import { moveDown } from '../../redux/actions/moveDown'
+import { mountBrick } from '../../redux/actions/mountBrick';
+import freePlaceToMove from '../../checks/freePlaceToMove';
 
-let moveDown = new MoveDown()
-
-export default function gameProcess(current, stopGame, intervalID) {
-    if (youLose(current.playField)) {
-        console.log('youlose')
-        stopGame()
-        return current
-    }
-    if (fullRows(current.playField)) {
-        return removeFullRows(current)
-    } else if (current.movingBrick.length === 0) {
-        return addNewBrick(current)
+export default function gameProcess() {
+    const state = store.getState()
+    // console.log(state)
+    if (state.brick.brick.length === 0) { //Если на поле нет движущегося кирпича
+        store.dispatch(addNewBrick())
     } else {
-        return moveDown.move(current)
+        if (state.brick.baseLine < 23 && freePlaceToMove('down')) {
+            store.dispatch(moveDown())
+        } else {
+            store.dispatch(mountBrick(state.playArea, state.brick))
+            store.dispatch(removeBrick())
+        }
     }
 }

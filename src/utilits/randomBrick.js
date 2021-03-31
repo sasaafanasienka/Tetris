@@ -24,7 +24,7 @@ function rotate(brick) {
     return rotatedBrick
 }
 
-export default function randomBlock() {
+export default function randomBrick() {
 
     let newBrick = blockExamples[random(6)] //сперва генерируем рандомно одну из 7 фигур
     for (let i = 0; i < random(3); i++ ) { //потом рандомно крутим фигуру от 0 до 3 раз
@@ -34,6 +34,7 @@ export default function randomBlock() {
 
     return {
         brick: newBrick,
+        baseLine: 3,
         baseColumn: Math.ceil((10 - newBrickSize) / 2)
     }
 }

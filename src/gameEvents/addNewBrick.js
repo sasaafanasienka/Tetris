@@ -1,5 +1,5 @@
 import scoreTable from '../constants/scoreTable'
-import randomBlock from '../utilits/randomBlock'
+import randomBlock from '../utilits/randomBrick'
 
 export default function addNewBrick(current) {
 
