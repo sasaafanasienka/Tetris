@@ -6,11 +6,11 @@ import Controls from '../Controls/Controls'
 import Stat from '../Stat/Stat'
 import Queue from '../Queue/Queue'
 import gameProcess from '../GameProcess/GameProcess'
-import Rotate from '../../blockMoves/Rotate';
 import freePlaceToMove from '../../checks/freePlaceToMove';
 import { moveDown } from '../../redux/actions/moveDown';
 import { moveLeft } from '../../redux/actions/moveLeft';
 import { moveRight } from '../../redux/actions/moveRight';
+import { rotate } from '../../redux/actions/rotate';
 import { useDispatch } from 'react-redux';
 
 function Main() {
@@ -49,6 +49,7 @@ function Main() {
             if (freePlaceToMove('right')) { dispatch(moveRight()) }
         }  else if (event.code === 'Numpad8' || event.code === 'ArrowUp' || event.code === 'KeyW') {
             event.preventDefault()
+            dispatch(rotate())
         }        
     }, [])
 
