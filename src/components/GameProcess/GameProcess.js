@@ -12,15 +12,20 @@ import { mountBrick } from '../../redux/actions/mountBrick';
 import freePlaceToMove from '../../checks/freePlaceToMove';
 
 export default function gameProcess() {
-    const state = store.getState()
-    // console.log(state)
-    if (state.brick.brick.length === 0) { //Если на поле нет движущегося кирпича
+    const playArea = store.getState().playArea
+    const brick = store.getState().brick
+    console.log(brick)
+    console.log(playArea)
+
+    if (brick.brick.length === 0) { //Если на поле нет движущегося кирпича
         store.dispatch(addNewBrick())
     } else {
-        if (state.brick.baseLine < 23 && freePlaceToMove('down')) {
+        if (freePlaceToMove('down', playArea, brick.brick, brick.baseLine + 1, brick.baseColumn)) {
+            console.log('try to move')
             store.dispatch(moveDown())
         } else {
-            store.dispatch(mountBrick(state.playArea, state.brick))
+            console.log('try to mount')
+            store.dispatch(mountBrick(playArea, brick))
             store.dispatch(removeBrick())
         }
     }

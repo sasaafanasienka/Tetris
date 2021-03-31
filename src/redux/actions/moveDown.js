@@ -3,6 +3,7 @@ import {store} from '../../index'
 
 export const moveDown = () => {
     const brick = store.getState().brick
+
     return {
         type: MOVE_DOWN,
         payload: {

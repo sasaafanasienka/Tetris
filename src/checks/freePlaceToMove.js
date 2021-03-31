@@ -1,15 +1,10 @@
 import { store } from '../index'
 
-export default function freePlaceToMove( direction ) {
+export default function freePlaceToMove( direction, playArea, brick, baseLine, baseColumn ) {
 
-    const state = store.getState()
-    const playArea = state.playArea
-    const brick = state.brick.brick
-    const baseLine = (direction === 'down') ? state.brick.baseLine + 1 : state.brick.baseLine
-    const baseColumn = (direction === 'left') ? state.brick.baseColumn - 1 :
-                       (direction === 'right') ? state.brick.baseColumn + 1 :
-                       state.brick.baseColumn
     const brickSize = brick.length
+
+    if (direction === 'down' && baseLine >= 24) { return false }
 
     if ( direction === 'left' ) {
         if (baseColumn < 0) {

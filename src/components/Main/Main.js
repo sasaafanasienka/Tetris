@@ -27,7 +27,7 @@ function Main() {
     function startGame() {
         window.addEventListener('keydown', keyActions)
         setMoveInterval(
-            setInterval(nextStep, 1000)
+            setInterval(nextStep, 100000)
             )
         }
         
@@ -40,13 +40,13 @@ function Main() {
         // console.log(event)
         if (event.code === 'Numpad5' || event.code === 'ArrowDown' || event.code === 'KeyS') {
             event.preventDefault()
-            if (freePlaceToMove('down')) { dispatch(moveDown()) }
+            gameProcess()
         } else if (event.code === 'Numpad4' || event.code === 'ArrowLeft' || event.code === 'KeyA') {
             event.preventDefault()
-            if (freePlaceToMove('left')) { dispatch(moveLeft()) }
+            dispatch(moveLeft())
         } else if (event.code === 'Numpad6' || event.code === 'ArrowRight' || event.code === 'KeyD') {
             event.preventDefault()
-            if (freePlaceToMove('right')) { dispatch(moveRight()) }
+            dispatch(moveRight())
         }  else if (event.code === 'Numpad8' || event.code === 'ArrowUp' || event.code === 'KeyW') {
             event.preventDefault()
             dispatch(rotate())
