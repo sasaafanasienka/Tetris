@@ -10,18 +10,25 @@ import { moveLeft } from '../../redux/actions/moveLeft';
 import { moveRight } from '../../redux/actions/moveRight';
 import { rotate } from '../../redux/actions/rotate';
 import { useDispatch, useSelector } from 'react-redux';
-import { GAME_PAUSE, GAME_START } from '../../redux/types';
+import { CLEAR_AREA, CLEAR_SCORE, GAME_PAUSE, GAME_START, CLEAR_LEVEL } from '../../redux/types';
 import nextStep from '../GameProcess/nextStep';
 import { autoStep } from '../GameProcess/autoStep';
 
 function Main() {
 
     const dispatch = useDispatch()
-    // const gameStatus = useSelector(state => { return state.gameStatus.status })
+    const gameStatus = useSelector(state => { return state.gameStatus })
 
     function startGame() {
         window.addEventListener('keydown', keyActions)
-        dispatch({type: GAME_START})
+        if (gameStatus === 'paused') {
+            dispatch({type: GAME_START})
+        } else if (gameStatus === 'finished') {
+            dispatch({type: CLEAR_AREA})
+            dispatch({type: CLEAR_SCORE})
+            dispatch({type: CLEAR_LEVEL})
+            dispatch({type: GAME_START})
+        }
         autoStep()
     }
     

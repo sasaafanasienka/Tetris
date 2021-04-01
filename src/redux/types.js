@@ -13,9 +13,11 @@ export const GENERATE_NEXT_BRICK = 'GENERATE_NEXT_BRICK'
 //Play area reducers
 export const MOUNT_BRICK = 'MOUNT_BRICK'
 export const REMOVE_FULL_ROWS = 'REMOVE_FULL_ROWS'
+export const CLEAR_AREA = 'CLEAR_AREA'
 
 //Score reucers
 export const UPDATE_SCORE = 'UPDATE_SCORE' 
+export const CLEAR_SCORE = 'CLEAR_SCORE' 
 
 //Status reducers
 export const GAME_START = 'GAME_START'
@@ -24,3 +26,4 @@ export const GAME_FINISH = 'GAME_FINISH'
 
 //Level reducers
 export const COUNT_ROWS = 'COUNT_ROWS'
+export const CLEAR_LEVEL = 'CLEAR_LEVEL'
