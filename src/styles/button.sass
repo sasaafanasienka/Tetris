@@ -10,11 +10,18 @@
     font-weight: bold
     font-size: 16px
     color: #ffee00
-    cursor: pointer
-    transition: background-color .35s, color .35s linear
     outline: none
 
-.button:hover
+.button_active
+    opacity: 1
+    cursor: pointer
+    transition: background-color .35s, color .35s
+
+.button_unactive
+    opacity: .3
+    cursor: auto
+
+.button_active:hover
     transition: background-color .35s, color .35s
     background-color: #ffee00
     color: #292929

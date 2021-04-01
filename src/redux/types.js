@@ -16,3 +16,11 @@ export const REMOVE_FULL_ROWS = 'REMOVE_FULL_ROWS'
 
 //Score reucers
 export const UPDATE_SCORE = 'UPDATE_SCORE' 
+
+//Status reducers
+export const GAME_START = 'GAME_START'
+export const GAME_PAUSE = 'GAME_PAUSE'
+export const GAME_FINISH = 'GAME_FINISH'
+
+//Level reducers
+export const COUNT_ROWS = 'COUNT_ROWS'

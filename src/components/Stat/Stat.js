@@ -6,6 +6,7 @@ function Stat() {
 
     const currentScore = useSelector(state => {return state.score.score})
     const currentRecord = useSelector(state => {return state.score.record})
+    const currentLevel = useSelector(state => {return state.level.level})
 
     return(
         <div className='Stat'>
@@ -13,6 +14,8 @@ function Stat() {
             <p className='Stat__score'>{currentScore}</p>
             <p className='Stat__title'>BEST:</p>
             <p className='Stat__score'>{currentRecord}</p>
+            <p className='Stat__title'>SPEED:</p>
+            <p className='Stat__score'>{currentLevel}</p>
         </div>
         )
 }
