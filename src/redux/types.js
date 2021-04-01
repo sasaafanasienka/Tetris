@@ -13,3 +13,6 @@ export const GENERATE_NEXT_BRICK = 'GENERATE_NEXT_BRICK'
 //Play area reducers
 export const MOUNT_BRICK = 'MOUNT_BRICK'
 export const REMOVE_FULL_ROWS = 'REMOVE_FULL_ROWS'
+
+//Score reucers
+export const UPDATE_SCORE = 'UPDATE_SCORE' 
