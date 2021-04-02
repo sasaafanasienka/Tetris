@@ -2,7 +2,7 @@ import { UPDATE_SCORE, CLEAR_SCORE } from "../types"
 
 const initialScore = {
     score: 0,
-    record: localStorage.getItem('record'),
+    record: localStorage.getItem('record') ? localStorage.getItem('record') : 0,
 }
 
 export const scoreReducer = (state = initialScore, action) => {
