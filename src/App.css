@@ -3,7 +3,7 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  background: linear-gradient(140deg, rgba(17,17,17,1) 0%, rgba(48,0,82,1) 73%);
+  background: linear-gradient(140deg, rgb(38, 38, 38) 0%, rgb(43, 43, 43) 100%);
   align-items: center;
   justify-content: center;
 }

@@ -57,9 +57,9 @@ function Main() {
         <main className="Main">
             <PlayArea />
             <div className="Main__controls-panel">
-                <Stat />       
-                <Controls startGame={startGame} stopGame={stopGame} />
                 <Queue />
+                <Stat />
+                <Controls startGame={startGame} stopGame={stopGame} />
             </div>
         </main>
         )
