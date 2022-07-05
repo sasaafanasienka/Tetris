@@ -16,7 +16,8 @@ export const REMOVE_FULL_ROWS = 'REMOVE_FULL_ROWS'
 export const CLEAR_AREA = 'CLEAR_AREA'
 
 //Score reucers
-export const UPDATE_SCORE = 'UPDATE_SCORE' 
+export const UPDATE_SCORE = 'UPDATE_SCORE'
+export const START_ANIMATION = 'START_ANIMATION'
 export const CLEAR_SCORE = 'CLEAR_SCORE' 
 
 //Status reducers
