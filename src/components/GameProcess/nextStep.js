@@ -6,7 +6,7 @@ import { mountBrick } from '../../redux/actions/mountBrick';
 import freePlaceToMove from '../../checks/freePlaceToMove';
 import removeFullRows from '../../redux/actions/removeFullRows';
 import { generateNextBrick } from '../../redux/actions/generateNextBrick';
-import { updateScore } from '../../redux/actions/updateScore';
+import { asyncUpdateScore } from '../../redux/actions/updateScore';
 import { countRows } from '../../redux/actions/countRows';
 import { GAME_FINISH } from '../../redux/types';
 
@@ -31,12 +31,12 @@ export default function nextStep() {
         store.dispatch(addNewBrick())
         store.dispatch(generateNextBrick())
         return
-    } 
-    
+    }
+
     // Проверка, есть ли заполненные ряды
     if (fullRowsQuantity > 0) {
         store.dispatch(removeFullRows(playArea, fullRowsQuantity))
-        store.dispatch(updateScore(fullRowsQuantity, score, record))
+        store.dispatch(asyncUpdateScore(fullRowsQuantity, score, record))
         store.dispatch(countRows(fullRowsQuantity, levelObj))
     } else {
         if (freePlaceToMove('down', playArea, brick.brick, brick.baseLine + 1, brick.baseColumn)) {
