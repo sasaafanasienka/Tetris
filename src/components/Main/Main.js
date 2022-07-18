@@ -19,7 +19,7 @@ function Main() {
     const dispatch = useDispatch()
     const gameStatus = useSelector(state => { return state.gameStatus })
 
-    function startGame() {
+    const startGame = () => {
         window.addEventListener('keydown', keyActions)
         if (gameStatus === 'paused') {
             dispatch({type: GAME_START})
@@ -32,7 +32,7 @@ function Main() {
         autoStep()
     }
     
-    function stopGame() {
+    const stopGame = () => {
         window.removeEventListener('keydown', keyActions)
         dispatch({type: GAME_PAUSE})
     }
@@ -47,22 +47,22 @@ function Main() {
         } else if (event.code === 'Numpad6' || event.code === 'ArrowRight' || event.code === 'KeyD') {
             event.preventDefault()
             dispatch(moveRight())
-        }  else if (event.code === 'Numpad8' || event.code === 'ArrowUp' || event.code === 'KeyW') {
+        } else if (event.code === 'Numpad8' || event.code === 'ArrowUp' || event.code === 'KeyW') {
             event.preventDefault()
             dispatch(rotate())
-        }        
+        }
     }, [])
 
-    return(
+    return (
         <main className="Main">
             <PlayArea />
             <div className="Main__controls-panel">
                 <Queue />
                 <Stat />
-                <Controls startGame={startGame} stopGame={stopGame} />
+                <Controls startGameFunc={startGame} stopGameFunc={stopGame} />
             </div>
         </main>
-        )
+    )
 }
 
 export default Main;

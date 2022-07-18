@@ -1,3 +1,19 @@
-.Controls
+.controls
     display: flex
     flex-direction: column
+    &__button
+        background-color: #ffee0022
+        width: 60px
+        height: 60px
+        border: none
+        outline: none
+        border-radius: 5px
+        cursor: pointer
+        transition: background-color 0.3s ease
+        & svg 
+            transition: fill 0.3s ease
+            fill: #ffee00
+        &:hover
+            background-color: #ffee00ff
+            & svg
+                fill: #000000

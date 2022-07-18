@@ -1,25 +1,32 @@
-import React from 'react';
+import React from 'react'
 import './Controls.sass'
-import start from '../../images/start.svg'
-import pause from '../../images/pause.svg'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 
-function Controls(props) {
+const Controls = ({startGameFunc, stopGameFunc})  => {
 
-    const gameStatus = useSelector(state => {return state.gameStatus})
-
-    let startClassName = (gameStatus === 'inProgress') ? 'button button_unactive' : 'button button_active'
-    let startFunction = (gameStatus === 'inProgress') ? null : props.startGame
-    let pauseClassName = (gameStatus === 'inProgress') ? 'button button_active' : 'button button_unactive'
-    let pauseFunction = (gameStatus === 'inProgress') ? props.stopGame : null
+    const gameStatus = useSelector(state => { return state.gameStatus })
 
     return(
-        <div className='Controls'>
-            <button className={startClassName} onClick={startFunction}>
-                <img src={start}></img>
-            </button>
-            <button className={pauseClassName} onClick={pauseFunction}>
-                <img src={pause}></img>
+        <div className='controls'>
+            <button className='controls__button'
+                onClick={gameStatus === 'inProgress' ? stopGameFunc : startGameFunc}
+            >
+                {
+                    gameStatus !== 'inProgress' &&
+                    <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                    viewBox="0 0 300 300">
+                        <polygon class="st0" points="224.9,150 94.4,74.7 94.4,225.3 "/>
+                    </svg>
+                }
+                {
+                    gameStatus === 'inProgress' &&
+                    <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                        viewBox="0 0 300 300">
+                        <rect x="93.5" y="84" class="st0" width="45" height="132"/>
+                        <rect x="161.5" y="84" class="st0" width="45" height="132"/>
+                    </svg>
+                    
+                }
             </button>
         </div>
         )

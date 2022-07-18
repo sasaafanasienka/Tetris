@@ -2,13 +2,9 @@ import { START_ANIMATION, UPDATE_SCORE } from "../types";
 
 export const asyncUpdateScore = (rows, score, record) => {
 
-    console.log(score, record)
-
     const scoreTable = [0, 5, 10, 20, 40]
     const increase = scoreTable[rows]
-    const recordIncrease = record - (score + increase) > 0 ? 0 : (score + increase) - record
-
-    console.log(increase, recordIncrease)
+    const recordIncrease = +record - (score + increase) > 0 ? 0 : (score + increase) - +record
 
     return dispatch => {
         dispatch(startAnimation(increase, recordIncrease))
