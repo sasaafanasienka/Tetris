@@ -1,16 +1,35 @@
-@import './__cell/PlayArea__cell'
-
 .PlayArea
-    margin-right: 20px
     width: 300px
     height: 600px
     display: grid
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 
+    grid-template-columns: repeat(10, 1fr) 
+    grid-template-rows: repeat(20, 1fr) 
     gap: 3px 3px
-    // grid-template-areas: ". . . . ." ". . . . ." ". . . . ." ". . . . ." ". . . . ." 
-
-@media (max-width: 500px)
-    .PlayArea
+    @media (max-width: 500px)
         width: 220px
         height: 440px
+    &__cell
+        border-radius: 5px
+        background-color: rgba(0,0,0,.1)
+        border: .2px solid rgba(255,255,255,.1)
+        &_yellow
+            border-radius: 5px
+            background-color: #ffee00
+        &_lightBlue
+            border-radius: 5px
+            background-color: #00d9ff
+        &_darkBlue
+            border-radius: 5px
+            background-color: #006eff
+        &_orange
+            border-radius: 5px
+            background-color: #ffae00
+        &_red
+            border-radius: 5px
+            background-color: #ff0000
+        &_green
+            border-radius: 5px
+            background-color: #33ff00
+        &_purple
+            border-radius: 5px
+            background-color: #d400ff

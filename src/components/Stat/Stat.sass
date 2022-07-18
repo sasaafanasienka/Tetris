@@ -5,6 +5,8 @@
     margin: 0 0 25px 0
     &__score
         margin: 0 0 10px 0
+        display: flex
+        column-gap: 5px
         font-family: Roboto
         color: #ffee00
         font-size: 32px
@@ -14,6 +16,11 @@
         @media (max-width: 400px)
             font-size: 24px
             line-height: 24px
+        & span
+            display: block
+    &__score-value
+        &.active
+            animation: plus 1s cubic-bezier(0,1,1,0)
     &__title
         margin: 0 0 5px 0
         font-family: Roboto
@@ -23,41 +30,67 @@
         color: #ffee00
         text-align: left
     &__animate
-        position: absolute
-        top: 199px
-        left: -191px
-        font-family: Roboto
-        font-weight: bold
-        font-size: 40px
-        line-height: 12px
-        color: #ffee00
         display: none
+        opacity: 0
+        transform: translate(0, 0)
         &.active
-            display: block
-            animation: show 1s ease
+            display: inline
+            animation: show 1s cubic-bezier(.84,-0.23,1,.48)
+    &__animate-plus
+        display: none
+        opacity: 0
+        &.active
+            display: inline
+            animation: show-plus 1s ease
+    &__next-level-container
+        display: flex
+        justify-content: flex-start
+        height: 10px
+        width: 80px
+        outline: 2px solid #ffee00
+        border-radius: 50px
+        margin: 6px 0 0 0
+    &__next-level-progress
+        height: 100%
+        min-width: 10px
+        background-color: #ffee00
+        border-radius: 50px
+        margin: 0
+        transition: width 0.2s ease
 
 @keyframes show
     0% 
+        transform: translate(0)
         opacity: 0
-        transform: scale(1)
-        top: 199px
-        left: -191px
-    40%
+    10%
+        transform: translate(0)
         opacity: 1
-        transform: scale(4)
     50%
+        transform: translate(0)
         opacity: 1
-        transform: scale(4)
-        top: 199px
-        left: -191px
-    99%
-        transform: scale(1)
-        top: 27px
-        left: 0px
+    90%
+        transform: translate(-40px)
         opacity: 1
     100%
-        transform: scale(1)
-        top: 27px
-        left: 0px
+        transform: translate(-50px)
         opacity: 0
 
+@keyframes show-plus
+    0% 
+        opacity: 0
+    10%
+        opacity: 1
+    50%
+        opacity: 1
+    60%
+        opacity: 0
+
+@keyframes plus
+    0%
+        background-color: #ffee0000
+    70%
+        background-color: #ffee0000
+    85%
+        background-color: #ffee00
+    100%
+        background-color: #ffee0000
