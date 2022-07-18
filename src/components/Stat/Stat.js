@@ -4,35 +4,36 @@ import './Stat.sass'
 
 function Stat() {
 
-    const currentScore = useSelector(state => {return state.score.score})
-    const score = useSelector(state => {return state.score})
-    const currentRecord = useSelector(state => {return state.score.record})
-    const currentLevel = useSelector(state => { return state.level.level })
-    const rows = useSelector(state => { return state.level.rows })
-
-    console.log(rows)
+    const {
+        score,
+        record,
+        scorePlus,
+        recordPlus,
+        scoreAnimation,
+        recordAnimation
+    } = useSelector(state => { return state.score })
+    const { level, rows } = useSelector(state => { return state.level })
 
     const getProgress = () => {
         return `${(rows % 15) / 15 * 100}%`
-        // return `linear-gradient(90deg, ` +
-        //     `rgba(255,238,0,1) 0%, ` +
-        //     `rgba(255,238,0,1) ${percent}%, ` +
-        //     `rgba(255,238,0,0) ${percent}%, ` +
-        //     `rgba(255,238,0,0) 100%)`
     }
     
     return(
         <div className='Stat'>
             <p className='Stat__title'>SCORE:</p>
             <p className='Stat__score'>
-                <span className={`Stat__score-value ${score.animation}`}>{currentScore}</span>
-                <span className={`Stat__animate-plus ${score.animation}`}> + </span>
-                <span className={`Stat__animate ${score.animation}`}>{score.animationValue}</span>
+                <span className={`Stat__score-value ${scoreAnimation}`}>{score}</span>
+                <span className={`Stat__animate-plus ${scoreAnimation}`}> + </span>
+                <span className={`Stat__animate ${scoreAnimation}`}>{scorePlus}</span>
             </p>
             <p className='Stat__title'>BEST:</p>
-            <p className='Stat__score'>{currentRecord}</p>
+            <p className='Stat__score'>
+                <span className={`Stat__score-value ${recordAnimation}`}>{record}</span>
+                <span className={`Stat__animate-plus ${recordAnimation}`}> + </span>
+                <span className={`Stat__animate ${recordAnimation}`}>{recordPlus}</span>
+            </p>
             <p className='Stat__title'>SPEED:</p>
-            <p className='Stat__score'>{currentLevel}</p>
+            <p className='Stat__score'>{level}</p>
             <p className='Stat__title'>NEXT LEVEL:</p>
             <div className='Stat__next-level-container'>
                 <div className='Stat__next-level-progress' style={{width: getProgress()}}></div>

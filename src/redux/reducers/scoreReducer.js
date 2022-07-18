@@ -2,9 +2,11 @@ import { UPDATE_SCORE, CLEAR_SCORE, START_ANIMATION } from "../types"
 
 const initialScore = {
     score: 0,
-    animation: '',
-    animationValue: 5,
+    scoreAnimation: '',
+    scorePlus: 5,
     record: localStorage.getItem('record') ? localStorage.getItem('record') : 0,
+    recordAnimation: '',
+    recordPlus: 5
 }
 
 export const scoreReducer = (state = initialScore, action) => {

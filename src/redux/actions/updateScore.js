@@ -1,13 +1,17 @@
 import { START_ANIMATION, UPDATE_SCORE } from "../types";
 
 export const asyncUpdateScore = (rows, score, record) => {
+
+    console.log(score, record)
+
     const scoreTable = [0, 5, 10, 20, 40]
     const increase = scoreTable[rows]
+    const recordIncrease = record - (score + increase) > 0 ? 0 : (score + increase) - record
 
-    console.log(increase)
+    console.log(increase, recordIncrease)
 
     return dispatch => {
-        dispatch(startAnimation(increase))
+        dispatch(startAnimation(increase, recordIncrease))
         setTimeout(() => {
             dispatch(updateScore(increase, score, record))
         }, 1000)
@@ -28,17 +32,20 @@ export const updateScore = (increase, score, record) => {
         payload: {
             score: newScore,
             record: newRecord,
-            animation: ''
+            scoreAnimation: '',
+            recordAnimation: ''
         }
     }
 }
 
-export const startAnimation = (value) => {
+export const startAnimation = (increase, recordIncrease) => {
     return {
         type: START_ANIMATION,
         payload: {
-            animation: 'active',
-            animationValue: value
+            scorePlus: increase,
+            scoreAnimation: 'active',
+            recordPlus: recordIncrease,
+            recordAnimation: recordIncrease > 0 ? 'active' : ''
         }
     }
 }
