@@ -15,15 +15,15 @@ const Controls = ({startGameFunc, stopGameFunc})  => {
                     gameStatus !== 'inProgress' &&
                     <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                     viewBox="0 0 300 300">
-                        <polygon class="st0" points="224.9,150 94.4,74.7 94.4,225.3 "/>
+                        <polygon className="st0" points="224.9,150 94.4,74.7 94.4,225.3 "/>
                     </svg>
                 }
                 {
                     gameStatus === 'inProgress' &&
                     <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         viewBox="0 0 300 300">
-                        <rect x="93.5" y="84" class="st0" width="45" height="132"/>
-                        <rect x="161.5" y="84" class="st0" width="45" height="132"/>
+                        <rect x="93.5" y="84" className="st0" width="45" height="132"/>
+                        <rect x="161.5" y="84" className="st0" width="45" height="132"/>
                     </svg>
                     
                 }
